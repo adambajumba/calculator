@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+//Modified Calculator
+//Isaac Jumba
+
 public class Calculator{
 
 	//Addition
@@ -24,38 +27,44 @@ public class Calculator{
 	}
 	//Squareroot
 	public static void squarerootNumber(int value1){
-		double root=(double)Math.sqrt(value1);
-		System.out.println("The Squareroot is: " + root);
+		double i;
+		double result= value1/2;
+		do{
+			i = result;
+			result = (i + (value1 / i)) / 2;
+		} while ((i - result) != 0);
+ 
+		System.out.println("The square root of "+value1+" is "+result);
 	}
-
 	//Power
 	public static void powerNumber(double x, double y){
-	
-		System.out.println("The Power is: " + Math.pow(x, y));
+		double result=1;
+		for (int i=1;i<=y;i++ ) {
+		result*=x;
+		}
+		System.out.println(x+" raised to power of "+y+" is "+result);
 	}
-
 	//Modulus
 	public static void modulusNumber(double x, double y){
-	
-		System.out.println("The Modulus is: " + x%y);
+		double result=x%y;
+		System.out.println(x+" modulo "+y+" is "+result);
 	}
-
 	//Average
 	public static void averageNumber(int value1, int value2){
-		double avg=(double)(value1+value2)/2;
-	
-		System.out.println("The Average is: " + avg);
+		float result=(float)value1+(((float)value2-(float)value1)/2);
+		System.out.println("The average is: "+result);
 	}
 	//main class
 	public static void main(String[] args) {
 
 
 		Scanner in=new Scanner(System.in);
+		System.out.println("Welcome to our Calculator");
 		System.out.println("Please enter select the type of operation you wish to perfom");		
 		System.out.println("1 for Addition\n" + "2 for Subtraction\n"  + "3 for Multiplication\n" + "4 for Division\n" + "5 for Squareroot\n" +"6 for Average\n" + "7 for Modulus\n"+ "8 for Power\n");
 
 		int inputChoice=in.nextInt();
-		if(inputChoice==1 || inputChoice ==2 || inputChoice==3 || inputChoice==4 || inputChoice==7 || inputChoice==8){
+		if(inputChoice==1 || inputChoice ==2 || inputChoice==3 || inputChoice==4 || inputChoice==7) {
 			System.out.println("Please enter the first number");
 			double num1=in.nextDouble();
 			System.out.println("Please enter the second number");
@@ -77,15 +86,21 @@ public class Calculator{
 				modulusNumber(num1, num2);
 				
 			}
-			if(inputChoice==8){
-				powerNumber(num1, num2);
-			}					
+								
 		}
 		else
 			if(inputChoice==5){
 				System.out.println("Please enter an number to find its Squareroot");
 				int num=in.nextInt();
 				squarerootNumber(num);
+			}
+		else
+			if(inputChoice==8){
+			System.out.println("Please enter the base number");
+			double value1=in.nextDouble();
+			System.out.println("Please enter the exponent number");
+			double value2=in.nextDouble();
+			powerNumber(value1, value2);
 			}
 		else 
 			if(inputChoice==6){
